@@ -1,0 +1,16 @@
+D:\Philip\GAI_GUI\calculator\bin\Debug\net8.0-windows\calculator.exe
+D:\Philip\GAI_GUI\calculator\bin\Debug\net8.0-windows\calculator.deps.json
+D:\Philip\GAI_GUI\calculator\bin\Debug\net8.0-windows\calculator.runtimeconfig.json
+D:\Philip\GAI_GUI\calculator\bin\Debug\net8.0-windows\calculator.dll
+D:\Philip\GAI_GUI\calculator\bin\Debug\net8.0-windows\calculator.pdb
+D:\Philip\GAI_GUI\calculator\obj\Debug\net8.0-windows\calculator.Form1.resources
+D:\Philip\GAI_GUI\calculator\obj\Debug\net8.0-windows\calculator.csproj.GenerateResource.cache
+D:\Philip\GAI_GUI\calculator\obj\Debug\net8.0-windows\calculator.GeneratedMSBuildEditorConfig.editorconfig
+D:\Philip\GAI_GUI\calculator\obj\Debug\net8.0-windows\calculator.AssemblyInfoInputs.cache
+D:\Philip\GAI_GUI\calculator\obj\Debug\net8.0-windows\calculator.AssemblyInfo.cs
+D:\Philip\GAI_GUI\calculator\obj\Debug\net8.0-windows\calculator.csproj.CoreCompileInputs.cache
+D:\Philip\GAI_GUI\calculator\obj\Debug\net8.0-windows\calculator.dll
+D:\Philip\GAI_GUI\calculator\obj\Debug\net8.0-windows\refint\calculator.dll
+D:\Philip\GAI_GUI\calculator\obj\Debug\net8.0-windows\calculator.pdb
+D:\Philip\GAI_GUI\calculator\obj\Debug\net8.0-windows\calculator.genruntimeconfig.cache
+D:\Philip\GAI_GUI\calculator\obj\Debug\net8.0-windows\ref\calculator.dll
