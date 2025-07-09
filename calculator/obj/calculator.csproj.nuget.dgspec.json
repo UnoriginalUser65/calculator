@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Philip\\GAI_GUI\\calculator\\calculator.csproj": {}
+    "C:\\Users\\phili\\source\\repos\\calculator-repo\\UnoriginalUser65\\calculator\\calculator\\calculator.csproj": {}
   },
   "projects": {
-    "D:\\Philip\\GAI_GUI\\calculator\\calculator.csproj": {
+    "C:\\Users\\phili\\source\\repos\\calculator-repo\\UnoriginalUser65\\calculator\\calculator\\calculator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Philip\\GAI_GUI\\calculator\\calculator.csproj",
+        "projectUniqueName": "C:\\Users\\phili\\source\\repos\\calculator-repo\\UnoriginalUser65\\calculator\\calculator\\calculator.csproj",
         "projectName": "calculator",
-        "projectPath": "D:\\Philip\\GAI_GUI\\calculator\\calculator.csproj",
-        "packagesPath": "C:\\Users\\archa\\.nuget\\packages\\",
-        "outputPath": "D:\\Philip\\GAI_GUI\\calculator\\obj\\",
+        "projectPath": "C:\\Users\\phili\\source\\repos\\calculator-repo\\UnoriginalUser65\\calculator\\calculator\\calculator.csproj",
+        "packagesPath": "C:\\Users\\phili\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\phili\\source\\repos\\calculator-repo\\UnoriginalUser65\\calculator\\calculator\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "d:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\archa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\phili\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -69,7 +68,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
