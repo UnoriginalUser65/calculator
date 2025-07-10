@@ -146,7 +146,7 @@ namespace calculator
 
         private void button_clr_Click(object sender, EventArgs e)
         {
-            Display1.Text = "0";
+            Display1.Text = "";
             Display2.Text = "";
             a = 0;
             b = 0;
@@ -219,9 +219,10 @@ namespace calculator
             {
                 a = Convert.ToDouble(Display1.Text);
                 Display1.Text = Convert.ToString(1 / a);
-                Display2.Text = $"1 / {a} =";
-                lockflag = true;
+                Display2.Text = $"1 / {a} ";
             }
+
+            lockflag = true;
         }
 
         private void button_square_Click(object sender, EventArgs e)
@@ -231,8 +232,10 @@ namespace calculator
                 a = Convert.ToDouble(Display1.Text);
                 Display1.Text = Convert.ToString(a * a);
                 Display2.Text = $"{a}^2 =";
-                lockflag = true;
             }
+
+
+            lockflag = true;
         }
 
         private void button_sqrt_Click(object sender, EventArgs e)
@@ -252,13 +255,12 @@ namespace calculator
 
         private void button_eq_Click(object sender, EventArgs e)
         {
-            Display2.Text = Display2.Text.Replace(Convert.ToString(b), Display1.Text);
+            
             if ((double.TryParse(Display1.Text, out double result)))
             {
                 b = Convert.ToDouble(Display1.Text);
 
             }
-
             double temp = a;
 
             if (lockflag)
@@ -282,6 +284,10 @@ namespace calculator
             switch (e.KeyCode)
             {
                 case Keys.NumPad1:
+                    if (lockflag)
+                    {
+                        button_clr.PerformClick();
+                    }
                     button1.PerformClick(); break;
 
                 case Keys.NumPad2:
@@ -315,15 +321,23 @@ namespace calculator
                     button_dot.PerformClick(); break;
 
                 case Keys.Add:
-                    button_plus.PerformClick(); break;
+                    button_eq.PerformClick();
+                    button_plus.PerformClick();
+                    button_clrentry.PerformClick(); break;
+
 
                 case Keys.Subtract:
-                    button_minus.PerformClick(); break;
+                    button_eq.PerformClick();
+                    button_minus.PerformClick();
+                    button_clrentry.PerformClick(); break;
 
                 case Keys.Multiply:
-                    button_mult.PerformClick(); break;
+                    button_eq.PerformClick();
+                    button_mult.PerformClick();
+                    button_clrentry.PerformClick(); break;
 
                 case Keys.Divide:
+                    button_eq.PerformClick();
                     button_div.PerformClick(); break;
 
                 case Keys.Enter:
