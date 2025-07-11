@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Display1 = new RichTextBox();
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
@@ -52,22 +51,9 @@
             button_minus = new Button();
             button_eq = new Button();
             Display2 = new RichTextBox();
+            Display1 = new RichTextBox();
+            button10 = new Button();
             SuspendLayout();
-            // 
-            // Display1
-            // 
-            Display1.Font = new Font("Segoe UI", 30F);
-            Display1.ForeColor = SystemColors.ControlText;
-            Display1.Location = new Point(8, 41);
-            Display1.Margin = new Padding(2);
-            Display1.Multiline = false;
-            Display1.Name = "Display1";
-            Display1.ReadOnly = true;
-            Display1.RightToLeft = RightToLeft.No;
-            Display1.Size = new Size(526, 56);
-            Display1.TabIndex = 0;
-            Display1.Text = "";
-            Display1.UseWaitCursor = true;
             // 
             // button1
             // 
@@ -78,6 +64,7 @@
             button1.Name = "button1";
             button1.Size = new Size(84, 72);
             button1.TabIndex = 2;
+            button1.TabStop = false;
             button1.Text = "1";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
@@ -90,6 +77,7 @@
             button2.Name = "button2";
             button2.Size = new Size(84, 72);
             button2.TabIndex = 3;
+            button2.TabStop = false;
             button2.Text = "2";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
@@ -102,6 +90,7 @@
             button3.Name = "button3";
             button3.Size = new Size(84, 72);
             button3.TabIndex = 4;
+            button3.TabStop = false;
             button3.Text = "3";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
@@ -114,6 +103,7 @@
             button_clr.Name = "button_clr";
             button_clr.Size = new Size(84, 148);
             button_clr.TabIndex = 5;
+            button_clr.TabStop = false;
             button_clr.Text = "C";
             button_clr.UseVisualStyleBackColor = true;
             button_clr.Click += button_clr_Click;
@@ -126,6 +116,7 @@
             button4.Name = "button4";
             button4.Size = new Size(84, 72);
             button4.TabIndex = 6;
+            button4.TabStop = false;
             button4.Text = "4";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
@@ -138,6 +129,7 @@
             button5.Name = "button5";
             button5.Size = new Size(84, 72);
             button5.TabIndex = 7;
+            button5.TabStop = false;
             button5.Text = "5";
             button5.UseVisualStyleBackColor = true;
             button5.Click += button5_Click;
@@ -150,6 +142,7 @@
             button6.Name = "button6";
             button6.Size = new Size(84, 72);
             button6.TabIndex = 8;
+            button6.TabStop = false;
             button6.Text = "6";
             button6.UseVisualStyleBackColor = true;
             button6.Click += button6_Click;
@@ -162,6 +155,7 @@
             button_clrentry.Name = "button_clrentry";
             button_clrentry.Size = new Size(84, 148);
             button_clrentry.TabIndex = 9;
+            button_clrentry.TabStop = false;
             button_clrentry.Text = "CE";
             button_clrentry.UseVisualStyleBackColor = true;
             button_clrentry.Click += button_clrentry_Click;
@@ -174,6 +168,7 @@
             button7.Name = "button7";
             button7.Size = new Size(84, 72);
             button7.TabIndex = 10;
+            button7.TabStop = false;
             button7.Text = "7";
             button7.UseVisualStyleBackColor = true;
             button7.Click += button7_Click;
@@ -186,6 +181,7 @@
             button8.Name = "button8";
             button8.Size = new Size(84, 72);
             button8.TabIndex = 11;
+            button8.TabStop = false;
             button8.Text = "8";
             button8.UseVisualStyleBackColor = true;
             button8.Click += button8_Click;
@@ -198,6 +194,7 @@
             button9.Name = "button9";
             button9.Size = new Size(84, 72);
             button9.TabIndex = 12;
+            button9.TabStop = false;
             button9.Text = "9";
             button9.UseVisualStyleBackColor = true;
             button9.Click += button9_Click;
@@ -210,6 +207,7 @@
             button_posneg.Name = "button_posneg";
             button_posneg.Size = new Size(84, 72);
             button_posneg.TabIndex = 25;
+            button_posneg.TabStop = false;
             button_posneg.Text = "+/-";
             button_posneg.UseVisualStyleBackColor = true;
             button_posneg.Click += button_posneg_Click;
@@ -222,6 +220,7 @@
             button0.Name = "button0";
             button0.Size = new Size(84, 72);
             button0.TabIndex = 24;
+            button0.TabStop = false;
             button0.Text = "0";
             button0.UseVisualStyleBackColor = true;
             button0.Click += button0_Click;
@@ -234,6 +233,7 @@
             button_dot.Name = "button_dot";
             button_dot.Size = new Size(84, 72);
             button_dot.TabIndex = 23;
+            button_dot.TabStop = false;
             button_dot.Text = ".";
             button_dot.UseVisualStyleBackColor = true;
             button_dot.Click += button_dot_Click;
@@ -246,6 +246,7 @@
             button_mult.Name = "button_mult";
             button_mult.Size = new Size(84, 72);
             button_mult.TabIndex = 21;
+            button_mult.TabStop = false;
             button_mult.Text = "*";
             button_mult.UseVisualStyleBackColor = true;
             button_mult.Click += button_mult_Click;
@@ -258,6 +259,7 @@
             button_recip.Name = "button_recip";
             button_recip.Size = new Size(84, 72);
             button_recip.TabIndex = 20;
+            button_recip.TabStop = false;
             button_recip.Text = "1/x";
             button_recip.UseVisualStyleBackColor = true;
             button_recip.Click += button_recip_Click;
@@ -270,6 +272,7 @@
             button_plus.Name = "button_plus";
             button_plus.Size = new Size(84, 72);
             button_plus.TabIndex = 19;
+            button_plus.TabStop = false;
             button_plus.Text = "+";
             button_plus.UseVisualStyleBackColor = true;
             button_plus.Click += button_plus_Click;
@@ -282,6 +285,7 @@
             button_sqrt.Name = "button_sqrt";
             button_sqrt.Size = new Size(84, 72);
             button_sqrt.TabIndex = 18;
+            button_sqrt.TabStop = false;
             button_sqrt.Text = "sqrt";
             button_sqrt.UseVisualStyleBackColor = true;
             button_sqrt.Click += button_sqrt_Click;
@@ -294,6 +298,7 @@
             button_div.Name = "button_div";
             button_div.Size = new Size(84, 72);
             button_div.TabIndex = 17;
+            button_div.TabStop = false;
             button_div.Text = "/";
             button_div.UseVisualStyleBackColor = true;
             button_div.Click += button_div_Click;
@@ -306,6 +311,7 @@
             button_square.Name = "button_square";
             button_square.Size = new Size(84, 72);
             button_square.TabIndex = 16;
+            button_square.TabStop = false;
             button_square.Text = "x^2";
             button_square.UseVisualStyleBackColor = true;
             button_square.Click += button_square_Click;
@@ -318,6 +324,7 @@
             button_minus.Name = "button_minus";
             button_minus.Size = new Size(84, 72);
             button_minus.TabIndex = 15;
+            button_minus.TabStop = false;
             button_minus.Text = "-";
             button_minus.UseVisualStyleBackColor = true;
             button_minus.Click += button_minus_Click;
@@ -330,26 +337,53 @@
             button_eq.Name = "button_eq";
             button_eq.Size = new Size(84, 72);
             button_eq.TabIndex = 14;
+            button_eq.TabStop = false;
             button_eq.Text = "=";
             button_eq.UseVisualStyleBackColor = true;
             button_eq.Click += button_eq_Click;
             // 
             // Display2
             // 
+            Display2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            Display2.BorderStyle = BorderStyle.FixedSingle;
             Display2.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Display2.Location = new Point(8, 8);
             Display2.Margin = new Padding(2);
+            Display2.Multiline = false;
             Display2.Name = "Display2";
             Display2.ReadOnly = true;
+            Display2.RightToLeft = RightToLeft.No;
             Display2.Size = new Size(526, 30);
-            Display2.TabIndex = 26;
+            Display2.TabIndex = 0;
             Display2.Text = "";
+            // 
+            // Display1
+            // 
+            Display1.Font = new Font("Segoe UI", 25F, FontStyle.Bold);
+            Display1.Location = new Point(8, 43);
+            Display1.Multiline = false;
+            Display1.Name = "Display1";
+            Display1.ReadOnly = true;
+            Display1.RightToLeft = RightToLeft.No;
+            Display1.Size = new Size(525, 50);
+            Display1.TabIndex = 27;
+            Display1.Text = "0";
+            // 
+            // button10
+            // 
+            button10.Location = new Point(273, -8);
+            button10.Name = "button10";
+            button10.Size = new Size(10, 11);
+            button10.TabIndex = 28;
+            button10.Text = "button10";
+            button10.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(550, 413);
+            Controls.Add(Display1);
             Controls.Add(Display2);
             Controls.Add(button_posneg);
             Controls.Add(button0);
@@ -373,18 +407,18 @@
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(Display1);
+            Controls.Add(button10);
+            Font = new Font("Segoe UI", 9F);
             KeyPreview = true;
             Margin = new Padding(2);
+            MaximizeBox = false;
             Name = "Form1";
             Text = "Calculator";
-            KeyDown += Form1_KeyDown;
+            KeyPress += Form1_KeyPress;
             ResumeLayout(false);
         }
 
         #endregion
-
-        private RichTextBox Display1;
         private Button button1;
         private Button button2;
         private Button button3;
@@ -408,5 +442,7 @@
         private Button button_minus;
         private Button button_eq;
         private RichTextBox Display2;
+        private RichTextBox Display1;
+        private Button button10;
     }
 }

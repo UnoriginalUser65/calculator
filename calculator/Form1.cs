@@ -7,10 +7,10 @@ namespace calculator
     {
         double a = 0;
         double b = 0;
-        bool lockflag;
+        double c = 0;
+        bool lockflag = false;
 
         int operation;
-
         public Form1()
         {
             InitializeComponent();
@@ -25,36 +25,44 @@ namespace calculator
             switch (mode)
             {
                 case 1: //plus
+                    //d = a + b;
+                    Display2.Text += Display1.Text;
                     Display1.Text = Convert.ToString(a + b);
                     return true;
 
                 case 2: //minus
                     if (!lockflag)
                     {
+                        //d = a - b;
                         Display1.Text = Convert.ToString(a - b);
                     }
                     else //accounting for the swap in variables during eq event
                     {
+                        //d = b - a;
                         Display1.Text = Convert.ToString(b - a);
                     }
                     return true;
 
                 case 3: //mult
+                    //d = a * b;
                     Display1.Text = Convert.ToString(a * b);
                     return true;
 
                 case 4: //div
                     if (!lockflag)
                     {
+                        //d = a / b;
                         Display1.Text = Convert.ToString(a / b);
                     }
                     else //account for variable swap
                     {
+                        //d = b / a;
                         Display1.Text = Convert.ToString(b / a);
                     }
                     return true;
 
                 default:
+                    //d = 0;
                     return false;
 
 
@@ -65,203 +73,36 @@ namespace calculator
         {
             if (!lockflag)
             {
-                s += input;
+                if (Display1.Text == "0" && Display1.Text != null)
+                {
+                    s = input;
+                }
+                else
+                {
+                    s += input;
+                }
             }
             return s;
         }
-
-
-        private void button1_Click(object sender, EventArgs e)
+        public void equality()
         {
-            Display1.Text = inputLock(Display1.Text, "1");
-        }
-
-
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Display1.Text = inputLock(Display1.Text, "2");
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            Display1.Text = inputLock(Display1.Text, "3");
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            Display1.Text = inputLock(Display1.Text, "4");
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            Display1.Text = inputLock(Display1.Text, "5");
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            Display1.Text = inputLock(Display1.Text, "6"); ;
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            Display1.Text = inputLock(Display1.Text, "7"); ;
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            Display1.Text = inputLock(Display1.Text, "8");
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            Display1.Text = inputLock(Display1.Text, "9"); ;
-        }
-
-        private void button0_Click(object sender, EventArgs e)
-        {
-            Display1.Text = inputLock(Display1.Text, "0"); ;
-        }
-
-        private void button_posneg_Click(object sender, EventArgs e)
-        {
-            if (!(Display1.Text.Contains("-")))
+            Display2.Text = Display2.Text.Replace(Convert.ToString(b), Display1.Text);
+            try
             {
-                Display1.Text = $"-{Display1.Text}";
+                b = Convert.ToDouble(Display1.Text);
             }
-            else
+            catch (Exception e) 
             {
-                Display1.Text = Display1.Text.Replace("-", "");
-            }
-        }
-
-        private void button_dot_Click(object sender, EventArgs e)
-        {
-            if (!Display1.Text.Contains("."))
-            {
-                Display1.Text = inputLock(Display1.Text, ".");
+                Display1.Text += e.Message;
             }
 
-        }
+            double temp = a;
 
-        private void button_clr_Click(object sender, EventArgs e)
-        {
-            Display1.Text = "";
-            Display2.Text = "";
-            a = 0;
-            b = 0;
-            lockflag = false;
-        }
-
-        private void button_clrentry_Click(object sender, EventArgs e)
-        {
-            Display1.Text = "";
-            b = 0;
-            lockflag = false;
-        }
-
-        private void button_plus_Click(object sender, EventArgs e)
-        {
-            if (double.TryParse(Display1.Text, out double value))
-            {
-                a = Convert.ToDouble(Display1.Text);
-                Display1.Text += " + ";
-                Display2.Text = Display1.Text;
-                Display1.Text = "";
-                operation = 1;
-                lockflag = false;
-            }
-
-        }
-
-        private void button_minus_Click(object sender, EventArgs e)
-        {
-            if (double.TryParse(Display1.Text, out double value))
-            {
-                a = Convert.ToDouble(Display1.Text);
-                Display1.Text += " - ";
-                Display2.Text = Display1.Text;
-                Display1.Text = "";
-                operation = 2;
-                lockflag = false;
-            }
-        }
-
-        private void button_mult_Click(object sender, EventArgs e)
-        {
-            if (double.TryParse(Display1.Text, out double value))
-            {
-                a = Convert.ToDouble(Display1.Text);
-                Display1.Text += " * ";
-                Display2.Text = Display1.Text;
-                Display1.Text = "";
-                operation = 3;
-                lockflag = false;
-            }
-        }
-
-        private void button_div_Click(object sender, EventArgs e)
-        {
-            if (double.TryParse(Display1.Text, out double value))
-            {
-                a = Convert.ToDouble(Display1.Text);
-                Display1.Text += " / ";
-                Display2.Text = Display1.Text;
-                Display1.Text = "";
-                operation = 4;
-                lockflag = false;
-            }
-        }
-
-        private void button_recip_Click(object sender, EventArgs e)
-        {
-            if (double.TryParse(Display1.Text, out double value))
-            {
-                a = Convert.ToDouble(Display1.Text);
-                Display1.Text = Convert.ToString(1 / a);
-                Display2.Text = $"1 / {a} ";
-            }
-
-            lockflag = true;
-        }
-
-        private void button_square_Click(object sender, EventArgs e)
-        {
-            if (double.TryParse(Display1.Text, out double value))
-            {
-                a = Convert.ToDouble(Display1.Text);
-                Display1.Text = Convert.ToString(a * a);
-                Display2.Text = $"{a}^2 =";
-            }
-
-
-            lockflag = true;
-        }
-
-        private void button_sqrt_Click(object sender, EventArgs e)
-        {
-            if (a < 0 || double.TryParse(Display1.Text, out double value) == false)
-            {
-                Display1.Text = "Invalid input, please clear";
-            }
-            else
-            {
-                a = Convert.ToDouble(Display1.Text);
-                Display1.Text = Convert.ToString(Math.Sqrt(a));
-                Display2.Text = $"sqrt({a}) =";
-            }
-            lockflag = true;
-        }
-
-        private void button_eq_Click(object sender, EventArgs e)
-        {
-            
             if ((double.TryParse(Display1.Text, out double result)))
             {
                 b = Convert.ToDouble(Display1.Text);
 
             }
-            double temp = a;
 
             if (lockflag)
             {
@@ -276,77 +117,383 @@ namespace calculator
             }
 
             lockflag = true;
-
         }
 
-        private void Form1_KeyDown(object sender, KeyEventArgs e) //numpad compatibility
+        private void button1_Click(object sender, EventArgs e)
         {
-            switch (e.KeyCode)
+            if (lockflag)
             {
-                case Keys.NumPad1:
-                    if (lockflag)
-                    {
-                        button_clr.PerformClick();
-                    }
+                Display1.Text = "";
+                Display2.Text = "";
+                a = 0;
+                b = 0;
+                lockflag = false;
+            }
+            Display1.Text = inputLock(Display1.Text, "1");
+            button_eq.Focus();
+        }
+
+
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (lockflag)
+            {
+                Display1.Text = "";
+                Display2.Text = "";
+                a = 0;
+                b = 0;
+                lockflag = false;
+            }
+            Display1.Text = inputLock(Display1.Text, "2");
+            button_eq.Focus();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (lockflag)
+            {
+                Display1.Text = "";
+                Display2.Text = "";
+                a = 0;
+                b = 0;
+                lockflag = false;
+            }
+            Display1.Text = inputLock(Display1.Text, "3");
+            button_eq.Focus();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (lockflag)
+            {
+                Display1.Text = "";
+                Display2.Text = "";
+                a = 0;
+                b = 0;
+                lockflag = false;
+            }
+            Display1.Text = inputLock(Display1.Text, "4");
+            button_eq.Focus();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (lockflag)
+            {
+                Display1.Text = "";
+                Display2.Text = "";
+                a = 0;
+                b = 0;
+                lockflag = false;
+            }
+            Display1.Text = inputLock(Display1.Text, "5");
+            button_eq.Focus();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (lockflag)
+            {
+                Display1.Text = "";
+                Display2.Text = "";
+                a = 0;
+                b = 0;
+                lockflag = false;
+            }
+            Display1.Text = inputLock(Display1.Text, "6");
+            button_eq.Focus();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (lockflag)
+            {
+                Display1.Text = "";
+                Display2.Text = "";
+                a = 0;
+                b = 0;
+                lockflag = false;
+            }
+            Display1.Text = inputLock(Display1.Text, "7");
+            button_eq.Focus();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (lockflag)
+            {
+                Display1.Text = "";
+                Display2.Text = "";
+                a = 0;
+                b = 0;
+                lockflag = false;
+            }
+            Display1.Text = inputLock(Display1.Text, "8");
+            button_eq.Focus();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (lockflag)
+            {
+                Display1.Text = "";
+                Display2.Text = "";
+                a = 0;
+                b = 0;
+                lockflag = false;
+            }
+            Display1.Text = inputLock(Display1.Text, "9");
+            button_eq.Focus();
+        }
+
+        private void button0_Click(object sender, EventArgs e)
+        {
+            Display1.Text = inputLock(Display1.Text, "0");
+            button_eq.Focus();
+        }
+
+        private void button_posneg_Click(object sender, EventArgs e)
+        {
+            if (!(Display1.Text.Contains("-")))
+            {
+                Display1.Text = $"-{Display1.Text}";
+            }
+            else
+            {
+                Display1.Text = Display1.Text.Replace("-", "");
+            }
+            button_eq.Focus();
+        }
+
+        private void button_dot_Click(object sender, EventArgs e)
+        {
+            if (!Display1.Text.Contains("."))
+            {
+                Display1.Text = inputLock(Display1.Text, ".");
+            }
+            button_eq.Focus();
+        }
+
+        private void button_clr_Click(object sender, EventArgs e)
+        {
+            Display1.Text = "";
+            Display2.Text = "";
+            a = 0;
+            b = 0;
+            lockflag = false;
+            button_eq.Focus();
+        }
+
+        private void button_clrentry_Click(object sender, EventArgs e)
+        {
+            Display1.Text = "";
+            b = 0;
+            lockflag = false;
+            button_eq.Focus();
+        }
+
+        private void button_plus_Click(object sender, EventArgs e)
+        {
+
+            equality();
+
+
+            if (double.TryParse(Display1.Text, out double value))
+            {
+                a = Convert.ToDouble(Display1.Text);
+                Display1.Text += " + ";
+                Display2.Text = Display1.Text;
+                Display1.Text = "";
+                operation = 1;
+                lockflag = false;
+            }
+            button_eq.Focus();
+        }
+
+        private void button_minus_Click(object sender, EventArgs e)
+        {
+            equality();
+
+            if (double.TryParse(Display1.Text, out double value))
+            {
+                a = Convert.ToDouble(Display1.Text);
+                Display1.Text += " - ";
+                Display2.Text = Display1.Text;
+                Display1.Text = "";
+                operation = 2;
+                lockflag = false;
+            }
+            button_eq.Focus();
+        }
+
+        private void button_mult_Click(object sender, EventArgs e)
+        {
+            equality();
+
+            if (double.TryParse(Display1.Text, out double value))
+            {
+                a = Convert.ToDouble(Display1.Text);
+                Display1.Text += " * ";
+                Display2.Text = Display1.Text;
+                Display1.Text = "";
+                operation = 3;
+                lockflag = false;
+            }
+            button_eq.Focus();
+        }
+
+        private void button_div_Click(object sender, EventArgs e)
+        {
+            equality();
+
+            if (double.TryParse(Display1.Text, out double value))
+            {
+                a = Convert.ToDouble(Display1.Text);
+                Display1.Text += " / ";
+                Display2.Text = Display1.Text;
+                Display1.Text = "";
+                operation = 4;
+                lockflag = false;
+            }
+            button_eq.Focus();
+        }
+
+        private void button_recip_Click(object sender, EventArgs e)
+        {
+
+            if (double.TryParse(Display1.Text, out double value))
+            {
+                a = Convert.ToDouble(Display1.Text);
+                Display1.Text = Convert.ToString(1 / a);
+                Display2.Text = $"1 / {a} ";
+            }
+
+            lockflag = true;
+            button_eq.Focus();
+        }
+
+        private void button_square_Click(object sender, EventArgs e)
+        {
+            if (double.TryParse(Display1.Text, out double value))
+            {
+                a = Convert.ToDouble(Display1.Text);
+                Display1.Text = Convert.ToString(a * a);
+                Display2.Text = $"{a}^2 =";
+            }
+
+            button_eq.Focus();
+            lockflag = true;
+        }
+
+        private void button_sqrt_Click(object sender, EventArgs e)
+        {
+            if ((double.TryParse(Display1.Text, out double value)))
+            {
+                if (a < 0)
+                {
+                    Display1.Text = "Invalid input, please clear";
+                }
+                else
+                {
+                    a = Convert.ToDouble(Display1.Text);
+                    Display1.Text = Convert.ToString(Math.Sqrt(a));
+                    Display2.Text = $"sqrt({a}) =";
+                }
+                lockflag = true;
+            }
+            button_eq.Focus();
+        }
+
+        private void button_eq_Click(object sender, EventArgs e)
+        {
+
+            Display2.Text += Display2.Text.Replace(Convert.ToString(b), Display1.Text);
+            b = Convert.ToDouble(Display1.Text);
+
+            double temp = a;
+            //equality();
+            if ((double.TryParse(Display1.Text, out double result)))
+            {
+                b = result;
+
+            }
+
+            if (lockflag)
+            {
+                evaluateOperation(operation);
+                //Display1.Text = Convert.ToString(d);
+            }
+            else
+            {
+                Display2.Text = $"{Display2.Text}{Display1.Text} = ";
+                evaluateOperation(operation);
+                a = b;
+                c = a;
+                b = temp;
+                //Display1.Text = Convert.ToString(d);
+            }
+
+            lockflag = true;
+            button_eq.Focus();
+        }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e) //keyboard compatibility
+        {
+            switch (e.KeyChar)
+            {
+                case '1':
                     button1.PerformClick(); break;
 
-                case Keys.NumPad2:
+                case '2':
                     button2.PerformClick(); break;
 
-                case Keys.NumPad3:
+                case '3':
                     button3.PerformClick(); break;
 
-                case Keys.NumPad4:
+                case '4':
                     button4.PerformClick(); break;
 
-                case Keys.NumPad5:
+                case '5':
                     button5.PerformClick(); break;
 
-                case Keys.NumPad6:
+                case '6':
                     button6.PerformClick(); break;
 
-                case Keys.NumPad7:
+                case '7':
                     button7.PerformClick(); break;
 
-                case Keys.NumPad8:
+                case '8':
                     button8.PerformClick(); break;
 
-                case Keys.NumPad9:
+                case '9':
                     button9.PerformClick(); break;
 
-                case Keys.NumPad0:
+                case '0':
                     button0.PerformClick(); break;
 
-                case Keys.Decimal:
+                case '.':
                     button_dot.PerformClick(); break;
 
-                case Keys.Add:
-                    button_eq.PerformClick();
-                    button_plus.PerformClick();
-                    button_clrentry.PerformClick(); break;
+                case '+':
+                    button_plus.PerformClick(); break;
 
+                case '-':
+                    button_minus.PerformClick(); break;
 
-                case Keys.Subtract:
-                    button_eq.PerformClick();
-                    button_minus.PerformClick();
-                    button_clrentry.PerformClick(); break;
+                case '*':
+                    button_mult.PerformClick(); break;
 
-                case Keys.Multiply:
-                    button_eq.PerformClick();
-                    button_mult.PerformClick();
-                    button_clrentry.PerformClick(); break;
-
-                case Keys.Divide:
-                    button_eq.PerformClick();
+                case '/':
                     button_div.PerformClick(); break;
 
-                case Keys.Enter:
+                case (char)13: //enter
                     button_eq.PerformClick(); break;
 
-                case Keys.Escape:
+                case (char)27: //escape
                     button_clr.PerformClick(); break;
 
-                case Keys.Delete:
+                case (char)127: //delete
                     button_clrentry.PerformClick(); break;
             }
         }
