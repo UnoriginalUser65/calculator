@@ -355,6 +355,7 @@
             Display2.RightToLeft = RightToLeft.No;
             Display2.Size = new Size(526, 30);
             Display2.TabIndex = 0;
+            Display2.SelectionAlignment = HorizontalAlignment.Right;
             Display2.Text = "";
             // 
             // Display1
@@ -367,6 +368,7 @@
             Display1.RightToLeft = RightToLeft.No;
             Display1.Size = new Size(525, 50);
             Display1.TabIndex = 27;
+            Display1.SelectionAlignment = HorizontalAlignment.Right;
             Display1.Text = "0";
             // 
             // button10
@@ -409,6 +411,7 @@
             Controls.Add(button1);
             Controls.Add(button10);
             Font = new Font("Segoe UI", 9F);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             KeyPreview = true;
             Margin = new Padding(2);
             MaximizeBox = false;
