@@ -1,72 +1,73 @@
 using System.CodeDom.Compiler;
+using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
 
 namespace calculator
 {
     public partial class Form1 : Form
     {
-        double a = 0;
-        double b = 0;
         double c = 0;
+        char sign;
         bool lockflag = false;
+        double[] inOut = new double[3];
 
         int operation;
         public Form1()
         {
             InitializeComponent();
         }
-
-
+        
 
         //check operation being done
-        private bool evaluateOperation(int mode)
+        private double evaluateOperation(int mode)
         {
 
             switch (mode)
             {
                 case 1: //plus
+
                     //d = a + b;
-                    Display2.Text += Display1.Text;
-                    Display1.Text = Convert.ToString(a + b);
-                    return true;
+
+                    Display1.Text = Convert.ToString(c = inOut[0] + inOut[1]);
+                    inOut[2] = c;
+                    return c;
 
                 case 2: //minus
-                    if (!lockflag)
-                    {
-                        //d = a - b;
-                        Display1.Text = Convert.ToString(a - b);
-                    }
-                    else //accounting for the swap in variables during eq event
-                    {
-                        //d = b - a;
-                        Display1.Text = Convert.ToString(b - a);
-                    }
-                    return true;
+
+                    //d = a - b;
+                    Display1.Text = Convert.ToString(c = inOut[0] - inOut[1]);
+                    inOut[2] = c;
+                    return c;
 
                 case 3: //mult
+
                     //d = a * b;
-                    Display1.Text = Convert.ToString(a * b);
-                    return true;
+                    Display1.Text = Convert.ToString(c = inOut[0] * inOut[1]);
+                    inOut[2] = c;
+                    return c;
 
                 case 4: //div
-                    if (!lockflag)
-                    {
-                        //d = a / b;
-                        Display1.Text = Convert.ToString(a / b);
-                    }
-                    else //account for variable swap
-                    {
-                        //d = b / a;
-                        Display1.Text = Convert.ToString(b / a);
-                    }
-                    return true;
 
-                default:
-                    //d = 0;
-                    return false;
+                    //d = a / b;
+                    if (inOut[1] != 0)
+                    {
+                        Display1.Text = Convert.ToString(c = inOut[0] / inOut[1]);
+                        inOut[2] = c;
+                    }
+                    else
+                    {
+                        c = 0;
+                        Display1.Text = "Error: Division by Zero";
+                    }
+                        return c;
+
+                default: //would never happen
+                    c = 0;
+                    return c;
 
 
             }
+
         }
         //prevents unwanted input in the message box 
         public string inputLock(string s, string input)
@@ -86,35 +87,46 @@ namespace calculator
         }
         public void equality()
         {
-            Display2.Text = Display2.Text.Replace(Convert.ToString(b), Display1.Text);
-            try
+            if (!lockflag)
             {
-                b = Convert.ToDouble(Display1.Text);
+                if (!(double.TryParse(Display1.Text, out double num)))
+                {
+                    inOut[1] = inOut[0];
+                }
+                else
+                {
+                    inOut[1] = Convert.ToDouble(Display1.Text);
+                }
             }
-            catch (Exception e) 
+            //inOut[1] = b;
+            Display2.Text = $"{inOut[0]} {sign} {inOut[1]} = ";
+
+
+
+
+
+            /*if ((double.TryParse(Display1.Text, out double result)))
             {
-                Display1.Text += e.Message;
-            }
+                b = result;
+                
 
-            double temp = a;
-
-            if ((double.TryParse(Display1.Text, out double result)))
-            {
-                b = Convert.ToDouble(Display1.Text);
-
-            }
+            }*/
 
             if (lockflag)
             {
-                evaluateOperation(operation);
+                inOut[2] = evaluateOperation(operation);
             }
             else
             {
-                Display2.Text = $"{Display2.Text}{Display1.Text} = ";
-                evaluateOperation(operation);
-                a = b;
-                b = temp;
+                inOut[2] = evaluateOperation(operation);
             }
+
+            if (Display1.Text == "NaN")
+            {
+                Display1.Text = "output is not a number.";
+            }
+            (inOut[0], inOut[2]) = (inOut[2], inOut[0]);
+            inOut[2] = 0;
 
             lockflag = true;
         }
@@ -125,8 +137,9 @@ namespace calculator
             {
                 Display1.Text = "";
                 Display2.Text = "";
-                a = 0;
-                b = 0;
+                inOut[0] = 0;
+                inOut[1] = 0;
+                inOut[2] = 0;
                 lockflag = false;
             }
             Display1.Text = inputLock(Display1.Text, "1");
@@ -141,8 +154,9 @@ namespace calculator
             {
                 Display1.Text = "";
                 Display2.Text = "";
-                a = 0;
-                b = 0;
+                inOut[0] = 0;
+                inOut[1] = 0;
+                inOut[2] = 0;
                 lockflag = false;
             }
             Display1.Text = inputLock(Display1.Text, "2");
@@ -155,8 +169,9 @@ namespace calculator
             {
                 Display1.Text = "";
                 Display2.Text = "";
-                a = 0;
-                b = 0;
+                inOut[0] = 0;
+                inOut[1] = 0;
+                inOut[2] = 0;
                 lockflag = false;
             }
             Display1.Text = inputLock(Display1.Text, "3");
@@ -169,8 +184,9 @@ namespace calculator
             {
                 Display1.Text = "";
                 Display2.Text = "";
-                a = 0;
-                b = 0;
+                inOut[0] = 0;
+                inOut[1] = 0;
+                inOut[2] = 0;
                 lockflag = false;
             }
             Display1.Text = inputLock(Display1.Text, "4");
@@ -183,8 +199,9 @@ namespace calculator
             {
                 Display1.Text = "";
                 Display2.Text = "";
-                a = 0;
-                b = 0;
+                inOut[0] = 0;
+                inOut[1] = 0;
+                inOut[2] = 0;
                 lockflag = false;
             }
             Display1.Text = inputLock(Display1.Text, "5");
@@ -197,8 +214,9 @@ namespace calculator
             {
                 Display1.Text = "";
                 Display2.Text = "";
-                a = 0;
-                b = 0;
+                inOut[0] = 0;
+                inOut[1] = 0;
+                inOut[2] = 0;
                 lockflag = false;
             }
             Display1.Text = inputLock(Display1.Text, "6");
@@ -211,8 +229,9 @@ namespace calculator
             {
                 Display1.Text = "";
                 Display2.Text = "";
-                a = 0;
-                b = 0;
+                inOut[0] = 0;
+                inOut[1] = 0;
+                inOut[2] = 0;
                 lockflag = false;
             }
             Display1.Text = inputLock(Display1.Text, "7");
@@ -225,8 +244,9 @@ namespace calculator
             {
                 Display1.Text = "";
                 Display2.Text = "";
-                a = 0;
-                b = 0;
+                inOut[0] = 0;
+                inOut[1] = 0;
+                inOut[2] = 0;
                 lockflag = false;
             }
             Display1.Text = inputLock(Display1.Text, "8");
@@ -239,8 +259,9 @@ namespace calculator
             {
                 Display1.Text = "";
                 Display2.Text = "";
-                a = 0;
-                b = 0;
+                inOut[0] = 0;
+                inOut[1] = 0;
+                inOut[2] = 0;
                 lockflag = false;
             }
             Display1.Text = inputLock(Display1.Text, "9");
@@ -279,8 +300,9 @@ namespace calculator
         {
             Display1.Text = "";
             Display2.Text = "";
-            a = 0;
-            b = 0;
+            inOut[0] = 0;
+            inOut[1] = 0;
+            inOut[2] = 0;
             lockflag = false;
             button_eq.Focus();
         }
@@ -288,7 +310,7 @@ namespace calculator
         private void button_clrentry_Click(object sender, EventArgs e)
         {
             Display1.Text = "";
-            b = 0;
+            inOut[0] = 0;
             lockflag = false;
             button_eq.Focus();
         }
@@ -301,8 +323,9 @@ namespace calculator
 
             if (double.TryParse(Display1.Text, out double value))
             {
-                a = Convert.ToDouble(Display1.Text);
+                inOut[0] = value;
                 Display1.Text += " + ";
+                sign = '+';
                 Display2.Text = Display1.Text;
                 Display1.Text = "";
                 operation = 1;
@@ -317,8 +340,9 @@ namespace calculator
 
             if (double.TryParse(Display1.Text, out double value))
             {
-                a = Convert.ToDouble(Display1.Text);
+                inOut[0] = value;
                 Display1.Text += " - ";
+                sign = '-';
                 Display2.Text = Display1.Text;
                 Display1.Text = "";
                 operation = 2;
@@ -333,8 +357,9 @@ namespace calculator
 
             if (double.TryParse(Display1.Text, out double value))
             {
-                a = Convert.ToDouble(Display1.Text);
+                inOut[0] = value;
                 Display1.Text += " * ";
+                sign = '*';
                 Display2.Text = Display1.Text;
                 Display1.Text = "";
                 operation = 3;
@@ -349,8 +374,9 @@ namespace calculator
 
             if (double.TryParse(Display1.Text, out double value))
             {
-                a = Convert.ToDouble(Display1.Text);
+                inOut[0] = value;
                 Display1.Text += " / ";
+                sign = '/';
                 Display2.Text = Display1.Text;
                 Display1.Text = "";
                 operation = 4;
@@ -364,9 +390,8 @@ namespace calculator
 
             if (double.TryParse(Display1.Text, out double value))
             {
-                a = Convert.ToDouble(Display1.Text);
-                Display1.Text = Convert.ToString(1 / a);
-                Display2.Text = $"1 / {a} ";
+                Display1.Text = Convert.ToString(inOut[0] = 1 / value);
+                Display2.Text = $"1 / {value} ";
             }
 
             lockflag = true;
@@ -377,9 +402,8 @@ namespace calculator
         {
             if (double.TryParse(Display1.Text, out double value))
             {
-                a = Convert.ToDouble(Display1.Text);
-                Display1.Text = Convert.ToString(a * a);
-                Display2.Text = $"{a}^2 =";
+                Display1.Text = Convert.ToString(inOut[0] = value * value);
+                Display2.Text = $"{value}^2 =";
             }
 
             button_eq.Focus();
@@ -390,15 +414,14 @@ namespace calculator
         {
             if ((double.TryParse(Display1.Text, out double value)))
             {
-                if (a < 0)
+                if (value < 0)
                 {
                     Display1.Text = "Invalid input, please clear";
                 }
                 else
                 {
-                    a = Convert.ToDouble(Display1.Text);
-                    Display1.Text = Convert.ToString(Math.Sqrt(a));
-                    Display2.Text = $"sqrt({a}) =";
+                    Display1.Text = Convert.ToString(inOut[0] = Math.Sqrt(value));
+                    Display2.Text = $"sqrt({value}) =";
                 }
                 lockflag = true;
             }
@@ -407,37 +430,8 @@ namespace calculator
 
         private void button_eq_Click(object sender, EventArgs e)
         {
-
-            Display2.Text += Display2.Text.Replace(Convert.ToString(b), Display1.Text);
-            b = Convert.ToDouble(Display1.Text);
-
-            double temp = a;
-            //equality();
-            if ((double.TryParse(Display1.Text, out double result)))
-            {
-                b = result;
-
-            }
-
-            if (lockflag)
-            {
-                evaluateOperation(operation);
-                //Display1.Text = Convert.ToString(d);
-            }
-            else
-            {
-                Display2.Text = $"{Display2.Text}{Display1.Text} = ";
-                evaluateOperation(operation);
-                a = b;
-                c = a;
-                b = temp;
-                //Display1.Text = Convert.ToString(d);
-            }
-
-            lockflag = true;
-            button_eq.Focus();
+            equality();
         }
-
         private void Form1_KeyPress(object sender, KeyPressEventArgs e) //keyboard compatibility
         {
             switch (e.KeyChar)
@@ -497,5 +491,7 @@ namespace calculator
                     button_clrentry.PerformClick(); break;
             }
         }
+
+
     }
 }
